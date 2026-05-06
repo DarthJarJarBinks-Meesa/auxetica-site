@@ -4,4 +4,4 @@ Auxetica is a medical device venture developing next-generation orthopedic impla
 
 ## Live site
 
-GitHub Pages link: _to be added after Pages is enabled_.
+GitHub Pages link: https://darthjarjarbinks-meesa.github.io/auxetica-site/
