@@ -1,0 +1,1202 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Auxetica — Next-Generation Orthopedic Implants</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,300&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg: #f3f7fc;
+  --bg2: #ffffff;
+  --bg3: #eaf1f9;
+  --surface: #ffffff;
+  --surface2: #e6eef8;
+  --border: rgba(0, 62, 128, 0.14);
+  --border2: rgba(0, 62, 128, 0.28);
+  --teal: #0066cc;
+  --teal2: #004fa3;
+  --teal-dim: rgba(0, 102, 204, 0.12);
+  --teal-dim2: rgba(0, 102, 204, 0.06);
+  --blue: #003e80;
+  --text: #10233f;
+  --muted: #4f6580;
+  --muted2: #7086a1;
+  --font-display: 'Syne', sans-serif;
+  --font-body: 'DM Sans', sans-serif;
+  --font-mono: 'DM Mono', monospace;
+}
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body {
+  background: var(--bg);
+  color: var(--text);
+  font-family: var(--font-body);
+  font-size: 16px;
+  line-height: 1.7;
+  overflow-x: hidden;
+}
+
+/* NAV */
+nav {
+  position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 0 4rem; height: 72px;
+  background: rgba(255,255,255,0.94);
+  backdrop-filter: blur(20px);
+  border-bottom: 1px solid var(--border);
+}
+.nav-logo {
+  font-family: var(--font-display);
+  font-weight: 800; font-size: 1.35rem;
+  letter-spacing: 0.08em;
+  color: var(--text);
+  text-decoration: none;
+}
+.nav-logo span { color: var(--teal); }
+.nav-links { display: flex; gap: 2.5rem; list-style: none; }
+.nav-links a {
+  font-family: var(--font-body); font-size: 0.88rem; font-weight: 500;
+  letter-spacing: 0.04em; text-transform: uppercase;
+  color: var(--muted); text-decoration: none;
+  transition: color 0.2s;
+}
+.nav-links a:hover, .nav-links a.active { color: var(--text); }
+.nav-links a.active { color: var(--teal); }
+
+/* PAGES */
+.page { display: none; min-height: 100vh; padding-top: 72px; }
+.page.active { display: block; }
+
+/* ── HOME ── */
+.hero {
+  min-height: calc(100vh - 72px);
+  display: flex; flex-direction: column; justify-content: center;
+  padding: 6rem 4rem 4rem;
+  position: relative; overflow: hidden;
+}
+.hero-grid-bg {
+  position: absolute; inset: 0; z-index: 0;
+  background-image:
+    linear-gradient(var(--border) 1px, transparent 1px),
+    linear-gradient(90deg, var(--border) 1px, transparent 1px);
+  background-size: 60px 60px;
+  mask-image: radial-gradient(ellipse 80% 70% at 60% 40%, black 30%, transparent 80%);
+}
+.hero-glow {
+  position: absolute; right: -10%; top: 10%; z-index: 0;
+  width: 700px; height: 700px; border-radius: 50%;
+  background: radial-gradient(circle, rgba(0,102,204,0.14) 0%, transparent 65%);
+  pointer-events: none;
+}
+.hero-content { position: relative; z-index: 1; max-width: 780px; }
+.hero-tag {
+  display: inline-flex; align-items: center; gap: 8px;
+  font-family: var(--font-mono); font-size: 0.72rem;
+  letter-spacing: 0.1em; text-transform: uppercase;
+  color: var(--teal); border: 1px solid rgba(0,102,204,0.32);
+  padding: 6px 14px; border-radius: 2px; margin-bottom: 2rem;
+}
+.hero-tag::before {
+  content: ''; width: 6px; height: 6px; border-radius: 50%;
+  background: var(--teal); display: block;
+  animation: pulse 2s ease-in-out infinite;
+}
+@keyframes pulse { 0%,100%{opacity:1} 50%{opacity:0.3} }
+.hero h1 {
+  font-family: var(--font-display); font-weight: 800;
+  font-size: clamp(2.8rem, 5vw, 4.4rem); line-height: 1.05;
+  letter-spacing: -0.02em; margin-bottom: 1.5rem;
+}
+.hero h1 em { font-style: normal; color: var(--teal); }
+.hero p {
+  font-size: 1.15rem; line-height: 1.8;
+  color: var(--muted); max-width: 560px; margin-bottom: 2.5rem;
+}
+.btn-row { display: flex; gap: 1rem; flex-wrap: wrap; }
+.btn {
+  display: inline-flex; align-items: center; gap: 8px;
+  font-family: var(--font-body); font-weight: 500; font-size: 0.9rem;
+  letter-spacing: 0.02em; padding: 14px 28px; border-radius: 3px;
+  text-decoration: none; cursor: pointer; transition: all 0.2s;
+  border: none;
+}
+.btn-primary {
+  background: var(--teal); color: #060a14;
+}
+.btn-primary:hover { background: var(--teal2); transform: translateY(-1px); }
+.btn-outline {
+  background: transparent; color: var(--text);
+  border: 1px solid var(--border2);
+}
+.btn-outline:hover { border-color: var(--teal); color: var(--teal); background: var(--teal-dim); }
+.btn-arrow::after { content: '→'; margin-left: 4px; }
+
+.stat-row {
+  display: flex; gap: 3rem; margin-top: 5rem; padding-top: 2.5rem;
+  border-top: 1px solid var(--border); flex-wrap: wrap;
+}
+.stat-num {
+  font-family: var(--font-display); font-weight: 700; font-size: 2rem;
+  color: var(--teal); line-height: 1;
+}
+.stat-label { font-size: 0.82rem; color: var(--muted); margin-top: 4px; }
+
+.section { padding: 6rem 4rem; }
+.section-tag {
+  font-family: var(--font-mono); font-size: 0.72rem;
+  letter-spacing: 0.12em; text-transform: uppercase;
+  color: var(--teal); margin-bottom: 0.75rem;
+}
+.section-title {
+  font-family: var(--font-display); font-weight: 700;
+  font-size: clamp(1.8rem, 3vw, 2.6rem); line-height: 1.1;
+  letter-spacing: -0.02em; margin-bottom: 1.25rem;
+}
+.section-sub { color: var(--muted); font-size: 1.05rem; max-width: 580px; line-height: 1.8; }
+
+.home-cards {
+  display: grid; grid-template-columns: repeat(3, 1fr); gap: 1px;
+  border: 1px solid var(--border); margin-top: 4rem;
+}
+.home-card {
+  padding: 2.5rem; background: var(--bg2);
+  border-right: 1px solid var(--border);
+  transition: background 0.2s;
+}
+.home-card:last-child { border-right: none; }
+.home-card:hover { background: var(--bg3); }
+.home-card-num {
+  font-family: var(--font-mono); font-size: 0.72rem;
+  color: var(--teal); letter-spacing: 0.1em; margin-bottom: 1.25rem;
+}
+.home-card h3 {
+  font-family: var(--font-display); font-weight: 700; font-size: 1.2rem;
+  margin-bottom: 0.75rem;
+}
+.home-card p { font-size: 0.92rem; color: var(--muted); line-height: 1.75; }
+
+/* ── SCIENCE ── */
+.science-hero {
+  padding: 5rem 4rem 3rem;
+  background: linear-gradient(180deg, var(--bg2) 0%, var(--bg) 100%);
+  border-bottom: 1px solid var(--border);
+}
+.science-grid {
+  display: grid; grid-template-columns: 1fr 1fr;
+  gap: 4rem; padding: 5rem 4rem; align-items: start;
+}
+.science-visual {
+  position: sticky; top: 90px;
+  background: var(--bg2); border: 1px solid var(--border);
+  border-radius: 4px; padding: 2rem;
+  display: flex; flex-direction: column; align-items: center;
+}
+.poisson-demo {
+  width: 100%; aspect-ratio: 1;
+  display: flex; align-items: center; justify-content: center;
+  position: relative;
+}
+.poisson-demo svg { width: 260px; height: 260px; }
+.science-steps { display: flex; flex-direction: column; gap: 3rem; }
+.science-step { display: flex; gap: 1.5rem; }
+.step-num {
+  font-family: var(--font-mono); font-size: 0.72rem; color: var(--teal);
+  letter-spacing: 0.1em; padding-top: 3px; min-width: 32px;
+}
+.step-body h3 {
+  font-family: var(--font-display); font-weight: 700; font-size: 1.15rem;
+  margin-bottom: 0.6rem;
+}
+.step-body p { font-size: 0.93rem; color: var(--muted); line-height: 1.8; }
+
+.callout {
+  background: var(--teal-dim2); border: 1px solid rgba(0,102,204,0.26);
+  border-left: 3px solid var(--teal);
+  padding: 1.25rem 1.5rem; border-radius: 0 3px 3px 0; margin: 2rem 0;
+}
+.callout p { font-size: 0.93rem; color: var(--text); line-height: 1.75; }
+.callout strong { color: var(--teal); font-weight: 500; }
+.science-mech-section {
+  padding: 0 4rem 5rem;
+}
+.science-mech-card {
+  background: var(--bg2);
+  border: 1px solid var(--border);
+  border-left: 4px solid var(--teal);
+  padding: 2rem 2.25rem;
+  max-width: 1100px;
+}
+.science-mech-card p {
+  font-size: 0.95rem;
+  line-height: 1.85;
+  color: var(--muted);
+  margin-top: 0.9rem;
+}
+.science-figure-title {
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  color: var(--teal);
+  letter-spacing: 0.1em;
+  margin-bottom: 1.25rem;
+  align-self: flex-start;
+}
+.science-cell-figure {
+  width: 100%;
+  border: 1px solid var(--border);
+  background: linear-gradient(180deg, #f8fbff 0%, #eef4fb 100%);
+  padding: 1rem;
+}
+.science-cell-figure svg {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+/* ── PRODUCTS ── */
+.products-hero {
+  padding: 5rem 4rem 3rem;
+  border-bottom: 1px solid var(--border);
+  background: var(--bg2);
+}
+.products-grid {
+  display: grid; grid-template-columns: repeat(2, 1fr);
+  gap: 1px; background: var(--border); margin: 0;
+}
+.product-card {
+  background: var(--bg); padding: 2.5rem;
+  display: flex; flex-direction: column; gap: 1.25rem;
+}
+.product-card-header { display: flex; justify-content: space-between; align-items: flex-start; }
+.product-name {
+  font-family: var(--font-display); font-weight: 700; font-size: 1.3rem;
+}
+.product-tag {
+  font-family: var(--font-mono); font-size: 0.68rem;
+  letter-spacing: 0.1em; color: var(--teal);
+  border: 1px solid rgba(0,102,204,0.28); padding: 3px 10px; border-radius: 2px;
+}
+.product-desc { font-size: 0.9rem; color: var(--muted); line-height: 1.75; }
+
+.stl-viewer-wrap {
+  width: 100%; aspect-ratio: 4/3;
+  background: var(--bg2); border: 1px solid var(--border);
+  border-radius: 3px; position: relative; overflow: hidden;
+}
+.stl-viewer-wrap canvas {
+  width: 100% !important; height: 100% !important;
+  display: block; cursor: grab;
+}
+.stl-viewer-wrap canvas:active { cursor: grabbing; }
+.stl-placeholder {
+  position: absolute; inset: 0;
+  display: flex; flex-direction: column;
+  align-items: center; justify-content: center; gap: 1rem;
+  color: var(--muted2);
+}
+.stl-placeholder svg { width: 48px; height: 48px; opacity: 0.4; }
+.stl-placeholder p { font-size: 0.85rem; }
+.stl-controls {
+  display: flex; align-items: center; gap: 10px; flex-wrap: wrap;
+}
+.reset-btn {
+  display: inline-flex; align-items: center; gap: 6px;
+  font-size: 0.78rem; padding: 7px 14px; border-radius: 3px;
+  cursor: pointer; border: 1px solid var(--border); background: transparent;
+  color: var(--muted); transition: all 0.2s; font-family: var(--font-body);
+}
+.reset-btn:hover { color: var(--text); border-color: var(--border2); }
+.stl-info-bar {
+  font-family: var(--font-mono); font-size: 0.72rem; color: var(--muted2);
+  display: none; padding: 4px 0;
+}
+.stl-info-bar.visible { display: block; }
+
+/* ── TEAM ── */
+.team-hero {
+  padding: 5rem 4rem 3rem;
+  border-bottom: 1px solid var(--border); background: var(--bg2);
+}
+.team-grid {
+  display: grid; grid-template-columns: repeat(4, 1fr);
+  gap: 1px; background: var(--border); padding: 0;
+}
+.team-card {
+  background: var(--bg); padding: 2.25rem 2rem;
+  transition: background 0.2s;
+}
+.team-card:hover { background: var(--bg2); }
+.team-avatar {
+  width: 56px; height: 56px; border-radius: 50%;
+  border: 1.5px solid var(--border2);
+  background: var(--surface);
+  display: flex; align-items: center; justify-content: center;
+  font-family: var(--font-display); font-weight: 700; font-size: 1.1rem;
+  color: var(--teal); margin-bottom: 1.25rem; letter-spacing: 0.05em;
+}
+.team-name {
+  font-family: var(--font-display); font-weight: 700; font-size: 1.05rem;
+  margin-bottom: 3px;
+}
+.team-role { font-size: 0.82rem; color: var(--teal); font-weight: 500; margin-bottom: 0.6rem; }
+.team-degree { font-size: 0.82rem; color: var(--muted); margin-bottom: 1rem; font-family: var(--font-mono); }
+.team-bio { font-size: 0.88rem; color: var(--muted); line-height: 1.75; }
+
+.advisor-section { padding: 4rem; border-top: 1px solid var(--border); }
+.advisor-card {
+  display: flex; gap: 2rem; align-items: flex-start;
+  background: var(--bg2); border: 1px solid var(--border);
+  padding: 2rem 2.5rem; max-width: 720px;
+}
+.advisor-avatar {
+  width: 64px; height: 64px; border-radius: 50%; flex-shrink: 0;
+  background: var(--surface); border: 1.5px solid var(--border2);
+  display: flex; align-items: center; justify-content: center;
+  font-family: var(--font-display); font-weight: 700; font-size: 1.2rem; color: var(--blue);
+}
+.advisor-name { font-family: var(--font-display); font-weight: 700; font-size: 1.1rem; }
+.advisor-title { font-size: 0.85rem; color: var(--teal); margin-bottom: 0.75rem; }
+.advisor-bio { font-size: 0.9rem; color: var(--muted); line-height: 1.75; }
+
+/* ── CONTACT ── */
+.contact-wrap {
+  min-height: calc(100vh - 72px); display: flex;
+  align-items: center; justify-content: center; padding: 4rem;
+}
+.contact-inner { max-width: 560px; width: 100%; }
+.contact-grid { display: flex; flex-direction: column; gap: 1rem; margin-top: 2rem; }
+.contact-item {
+  display: flex; gap: 1.25rem; align-items: flex-start;
+  padding: 1.5rem; background: var(--bg2); border: 1px solid var(--border);
+}
+.contact-icon {
+  width: 40px; height: 40px; flex-shrink: 0;
+  background: var(--teal-dim); border: 1px solid rgba(0,102,204,0.3);
+  border-radius: 3px; display: flex; align-items: center; justify-content: center;
+}
+.contact-icon svg { width: 18px; height: 18px; color: var(--teal); }
+.contact-label { font-family: var(--font-mono); font-size: 0.72rem; color: var(--teal); letter-spacing: 0.1em; margin-bottom: 3px; }
+.contact-val { font-size: 0.92rem; color: var(--muted); }
+
+/* FOOTER */
+footer {
+  border-top: 1px solid var(--border);
+  padding: 2rem 4rem;
+  display: flex; justify-content: space-between; align-items: center;
+  font-size: 0.82rem; color: var(--muted2);
+}
+.footer-logo { font-family: var(--font-display); font-weight: 800; font-size: 1rem; color: var(--text); }
+.footer-logo span { color: var(--teal); }
+</style>
+</head>
+<body>
+
+<nav>
+  <a class="nav-logo" href="#" onclick="return showPage('home')">AUXE<span>TICA</span></a>
+  <ul class="nav-links">
+    <li><a href="#" onclick="return showPage('home')" id="nav-home" class="active">Home</a></li>
+    <li><a href="#" onclick="return showPage('science')" id="nav-science">Science</a></li>
+    <li><a href="#" onclick="return showPage('products')" id="nav-products">Products</a></li>
+    <li><a href="#" onclick="return showPage('team')" id="nav-team">Team</a></li>
+    <li><a href="#" onclick="return showPage('contact')" id="nav-contact">Contact</a></li>
+  </ul>
+</nav>
+
+<!-- ══ HOME ══════════════════════════════════════════════════════════════ -->
+<div class="page active" id="page-home">
+  <section class="hero">
+    <div class="hero-grid-bg"></div>
+    <div class="hero-glow"></div>
+    <div class="hero-content">
+      <div class="hero-tag">Northwestern University · Ahuja Lab</div>
+      <h1>Implants That<br><em>Work With</em><br>Your Bone</h1>
+      <p>Auxetica is developing geometry-driven orthopedic implants that restore the mechanical stimulation bone needs to heal — with embedded smart sensors that let surgeons monitor implant health in real time.</p>
+      <div class="btn-row">
+        <a class="btn btn-primary btn-arrow" href="#" onclick="return showPage('science')">The Science</a>
+        <a class="btn btn-outline" href="#" onclick="return showPage('products')">Our Products</a>
+      </div>
+      <div class="stat-row">
+        <div class="stat-item">
+          <div class="stat-num">7.5M+</div>
+          <div class="stat-label">orthopedic implants annually in the US</div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-num">56%</div>
+          <div class="stat-label">stress shielding in solid titanium stems</div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-num">20%</div>
+          <div class="stat-label">of revision surgeries from implant failure</div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-num">$53B</div>
+          <div class="stat-label">global orthopedic implant market (2026)</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" style="background: var(--bg2); border-top: 1px solid var(--border); border-bottom: 1px solid var(--border);">
+    <div class="section-tag">The Platform</div>
+    <div class="section-title">Three innovations.<br>One implant.</div>
+    <p class="section-sub">Auxetica combines auxetic metamaterial architecture, multi-platform scalability, and embedded wireless sensing into a single next-generation implant system.</p>
+    <div class="home-cards">
+      <div class="home-card">
+        <div class="home-card-num">01 / STRUCTURE</div>
+        <h3>Auxetic Architecture</h3>
+        <p>Titanium lattices with geometry-driven negative Poisson's ratios that distribute mechanical load back into surrounding bone tissue — eliminating stress shielding at its source.</p>
+      </div>
+      <div class="home-card">
+        <div class="home-card-num">02 / PLATFORM</div>
+        <h3>Multi-Implant Library</h3>
+        <p>A single design philosophy applied across bone plates, bone screws, hip replacement stems, and orthopedic rods — enabling broad clinical deployment without bespoke engineering per device.</p>
+      </div>
+      <div class="home-card">
+        <div class="home-card-num">03 / SENSING</div>
+        <h3>Embedded Smart Sensors</h3>
+        <p>Integrated wireless torsional strain sensors allow surgeons to continuously monitor implant health and intervene before failure — shifting postoperative care from reactive to proactive.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" style="padding-top: 2.5rem;">
+    <a class="btn btn-outline btn-arrow" href="#" onclick="return showPage('team')">Meet the Team</a>
+  </section>
+</div>
+
+<!-- ══ SCIENCE ════════════════════════════════════════════════════════════ -->
+<div class="page" id="page-science">
+  <div class="science-hero">
+    <div class="section-tag">The Biology & Engineering</div>
+    <div class="section-title" style="max-width: 700px;">Why titanium implants fail —<br>and how geometry fixes it.</div>
+    <p class="section-sub">Stress shielding is not a material problem. It is a structural one. Auxetica solves it at the architectural level.</p>
+  </div>
+
+  <div class="science-grid">
+    <div class="science-steps">
+      <div class="science-step">
+        <div class="step-num">01</div>
+        <div class="step-body">
+          <h3>Cellular Response</h3>
+          <p>Bone healing depends on mechanotransduction: osteocytes sense local strain and signal progenitor cells to differentiate into osteoblasts that build new bone. Studies consistently show that physiologic loading supports osteoblast proliferation and matrix formation, while insufficient loading impairs these pathways.</p>
+        </div>
+      </div>
+      <div class="science-step">
+        <div class="step-num">02</div>
+        <div class="step-body">
+          <h3>The Stiffness Mismatch Problem</h3>
+          <p>Titanium has an elastic modulus of 110 GPa — between 5× and 550× stiffer than cortical and cancellous bone. When an implant is far stiffer than the surrounding tissue, it absorbs nearly all applied mechanical load, leaving bone mechanically unloaded.</p>
+        </div>
+      </div>
+      <div class="science-step">
+        <div class="step-num">03</div>
+        <div class="step-body">
+          <h3>Wolff's Law & Stress Shielding</h3>
+          <p>In accordance with Wolff's Law, bone remodels in response to the mechanical forces it experiences. Deprive bone of that stimulus and it undergoes progressive resorption — reducing periprosthetic bone density, degrading the bone-implant interface, and increasing fracture risk.</p>
+          <div class="callout">
+            <p>Finite element analyses of solid titanium femoral implants have quantified <strong>up to 56% stress shielding in the proximal femur</strong> — meaning more than half of all physiological load bypasses the bone entirely.</p>
+          </div>
+        </div>
+      </div>
+      <div class="science-step">
+        <div class="step-num">04</div>
+        <div class="step-body">
+          <h3>Negative Poisson's Ratio</h3>
+          <p>Conventional materials expand laterally when compressed and contract under tension. Auxetic structures do the opposite — they contract laterally under compression and expand under tension. This behavior emerges entirely from unit cell geometry, with no modification to the base material required.</p>
+        </div>
+      </div>
+      <div class="science-step">
+        <div class="step-num">05</div>
+        <div class="step-body">
+          <h3>Restoring Mechanotransduction</h3>
+          <p>By replacing bulk titanium with an auxetic lattice, the deformation behavior of the structure enables more natural, distributed load transfer to the surrounding bone tissue. FEA of auxetic titanium hip implants demonstrates a reduction of periprosthetic stress shielding from 56% to 18% in optimized auxetic designs.</p>
+        </div>
+      </div>
+    </div>
+
+    <div>
+      <div class="science-visual">
+        <div class="science-figure-title">CELLULAR RESPONSE TO MECHANICAL LOADING</div>
+        <div class="science-cell-figure">
+          <svg viewBox="0 0 520 220" xmlns="http://www.w3.org/2000/svg" fill="none">
+            <rect x="20" y="40" width="220" height="140" rx="4" fill="#ffffff" stroke="#d5e2f1"/>
+            <rect x="280" y="40" width="220" height="140" rx="4" fill="#ffffff" stroke="#d5e2f1"/>
+            <text x="130" y="30" text-anchor="middle" font-family="DM Mono, monospace" font-size="11" fill="#7086a1">LOW MECHANICAL STIMULUS</text>
+            <text x="390" y="30" text-anchor="middle" font-family="DM Mono, monospace" font-size="11" fill="#0066cc">PHYSIOLOGIC STIMULUS</text>
+            <circle cx="80" cy="90" r="13" fill="#d8e3f0"/>
+            <circle cx="130" cy="115" r="11" fill="#d8e3f0"/>
+            <circle cx="175" cy="88" r="12" fill="#d8e3f0"/>
+            <line x1="75" y1="145" x2="190" y2="145" stroke="#95a8be" stroke-width="4"/>
+            <text x="130" y="168" text-anchor="middle" font-family="DM Sans, sans-serif" font-size="11" fill="#7086a1">Reduced signaling · slower bone formation</text>
+            <circle cx="330" cy="90" r="13" fill="#c6dcf8"/>
+            <circle cx="380" cy="115" r="11" fill="#c6dcf8"/>
+            <circle cx="425" cy="88" r="12" fill="#c6dcf8"/>
+            <line x1="325" y1="145" x2="440" y2="145" stroke="#0066cc" stroke-width="4"/>
+            <line x1="350" y1="60" x2="350" y2="45" stroke="#0066cc" stroke-width="2"/>
+            <line x1="385" y1="63" x2="385" y2="48" stroke="#0066cc" stroke-width="2"/>
+            <line x1="420" y1="60" x2="420" y2="45" stroke="#0066cc" stroke-width="2"/>
+            <text x="390" y="168" text-anchor="middle" font-family="DM Sans, sans-serif" font-size="11" fill="#0066cc">Osteogenic signaling · stronger repair</text>
+          </svg>
+        </div>
+      </div>
+
+      <div class="science-visual" style="margin-top: 1.5rem;">
+        <div class="science-figure-title">POISSON RATIO COMPARISON</div>
+        <div class="poisson-demo">
+          <svg viewBox="0 0 260 260" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <!-- Conventional: expands under compression -->
+            <g transform="translate(20, 20)">
+              <text x="55" y="12" font-family="DM Mono, monospace" font-size="9" fill="#7a84a0" text-anchor="middle" letter-spacing="1">CONVENTIONAL</text>
+              <!-- arrows pushing in from top/bottom -->
+              <line x1="55" y1="22" x2="55" y2="32" stroke="#7a84a0" stroke-width="1.5" marker-end="url(#arr-gray)"/>
+              <line x1="55" y1="98" x2="55" y2="88" stroke="#7a84a0" stroke-width="1.5" marker-end="url(#arr-gray)"/>
+              <!-- compressed rect — taller laterally -->
+              <rect x="30" y="36" width="50" height="48" fill="rgba(122,132,160,0.12)" stroke="#4e5670" stroke-width="1"/>
+              <!-- lateral expansion arrows -->
+              <line x1="80" y1="60" x2="90" y2="60" stroke="#4e5670" stroke-width="1.5" marker-end="url(#arr-dim)"/>
+              <line x1="30" y1="60" x2="20" y2="60" stroke="#4e5670" stroke-width="1.5" marker-end="url(#arr-dim)"/>
+              <text x="55" y="112" font-family="DM Mono, monospace" font-size="8" fill="#4e5670" text-anchor="middle">ν &gt; 0</text>
+            </g>
+            <!-- Auxetic: contracts under compression -->
+            <g transform="translate(135, 20)">
+              <text x="55" y="12" font-family="DM Mono, monospace" font-size="9" fill="#0066cc" text-anchor="middle" letter-spacing="1">AUXETIC</text>
+              <line x1="55" y1="22" x2="55" y2="32" stroke="#0066cc" stroke-width="1.5" marker-end="url(#arr-teal)"/>
+              <line x1="55" y1="98" x2="55" y2="88" stroke="#0066cc" stroke-width="1.5" marker-end="url(#arr-teal)"/>
+              <!-- auxetic re-entrant unit cells approximated -->
+              <rect x="36" y="36" width="38" height="48" fill="rgba(0,102,204,0.08)" stroke="#0066cc" stroke-width="1"/>
+              <!-- inner re-entrant lines -->
+              <line x1="36" y1="55" x2="46" y2="60" stroke="rgba(0,102,204,0.55)" stroke-width="1"/>
+              <line x1="74" y1="55" x2="64" y2="60" stroke="rgba(0,102,204,0.55)" stroke-width="1"/>
+              <line x1="36" y1="65" x2="46" y2="60" stroke="rgba(0,102,204,0.55)" stroke-width="1"/>
+              <line x1="74" y1="65" x2="64" y2="60" stroke="rgba(0,102,204,0.55)" stroke-width="1"/>
+              <!-- lateral contraction arrows -->
+              <line x1="75" y1="60" x2="65" y2="60" stroke="#0066cc" stroke-width="1.5" marker-end="url(#arr-teal-in)"/>
+              <line x1="35" y1="60" x2="45" y2="60" stroke="#0066cc" stroke-width="1.5" marker-end="url(#arr-teal-in)"/>
+              <text x="55" y="112" font-family="DM Mono, monospace" font-size="8" fill="#0066cc" text-anchor="middle">ν &lt; 0</text>
+            </g>
+            <!-- defs -->
+            <defs>
+              <marker id="arr-gray" markerWidth="6" markerHeight="6" refX="3" refY="3" orient="auto">
+                <path d="M0,0 L6,3 L0,6 Z" fill="#7a84a0"/>
+              </marker>
+              <marker id="arr-dim" markerWidth="6" markerHeight="6" refX="3" refY="3" orient="auto">
+                <path d="M0,0 L6,3 L0,6 Z" fill="#4e5670"/>
+              </marker>
+              <marker id="arr-teal" markerWidth="6" markerHeight="6" refX="3" refY="3" orient="auto">
+                <path d="M0,0 L6,3 L0,6 Z" fill="#0066cc"/>
+              </marker>
+              <marker id="arr-teal-in" markerWidth="6" markerHeight="6" refX="3" refY="3" orient="auto">
+                <path d="M0,0 L6,3 L0,6 Z" fill="#0066cc"/>
+              </marker>
+            </defs>
+          </svg>
+        </div>
+        <p style="font-size: 0.82rem; color: var(--muted); text-align: center; margin-top: 0.5rem; line-height: 1.6;">Under axial compression, conventional materials expand laterally (ν &gt; 0). Auxetic structures contract inward (ν &lt; 0), enabling distributed load transfer to surrounding tissue.</p>
+      </div>
+
+      <div class="science-visual" style="margin-top: 1.5rem; position: static;">
+        <div style="font-family: var(--font-mono); font-size: 0.72rem; color: var(--teal); letter-spacing: 0.1em; margin-bottom: 1.25rem; align-self: flex-start;">STRESS SHIELDING REDUCTION</div>
+        <div style="width: 100%;">
+          <div style="display: flex; justify-content: space-between; align-items: flex-end; height: 120px; gap: 2rem; padding: 0 1rem;">
+            <div style="display: flex; flex-direction: column; align-items: center; gap: 8px; flex: 1;">
+              <div style="width: 100%; background: rgba(122,132,160,0.25); border: 1px solid var(--muted2);" id="bar-solid"></div>
+              <span style="font-family: var(--font-mono); font-size: 0.72rem; color: var(--muted);">Solid Ti</span>
+            </div>
+            <div style="display: flex; flex-direction: column; align-items: center; gap: 8px; flex: 1;">
+              <div style="width: 100%; background: var(--teal-dim); border: 1px solid rgba(0,102,204,0.45);" id="bar-auxetic"></div>
+              <span style="font-family: var(--font-mono); font-size: 0.72rem; color: var(--teal);">Auxetic Ti</span>
+            </div>
+          </div>
+          <div style="display: flex; justify-content: space-around; margin-top: 8px;">
+            <span style="font-family: var(--font-mono); font-size: 0.82rem; color: var(--muted);">56% shielding</span>
+            <span style="font-family: var(--font-mono); font-size: 0.82rem; color: var(--teal);">18% shielding</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="science-mech-section">
+    <div class="science-mech-card">
+      <div class="section-tag">Mechanobiology of Healing</div>
+      <div class="section-title" style="margin-bottom: 0;">Bone cells need mechanical stimulus to heal effectively.</div>
+      <p>Bone regeneration is not only biochemical; it is mechano-biological. Osteocytes and skeletal progenitor cells respond to local strain by activating osteogenic pathways that increase osteoblast differentiation, proliferation, and extracellular matrix production. When this mechanical signaling falls below physiologic levels, osteogenesis is blunted and remodeling shifts toward weaker repair.</p>
+      <p>Conventional high-stiffness implants can shield surrounding bone from normal load transfer. That unloading reduces the mechanotransductive signals required for healthy differentiation and proliferation, which can contribute to slower healing, lower periprosthetic bone quality, and higher long-term failure risk. Auxetic load-sharing architectures are designed to preserve this stimulus and support stronger biological integration over time.</p>
+    </div>
+  </div>
+</div>
+
+<!-- ══ PRODUCTS ═══════════════════════════════════════════════════════════ -->
+<div class="page" id="page-products">
+  <div class="products-hero">
+    <div class="section-tag">The Implant Platform</div>
+    <div class="section-title">Five device categories.<br>One auxetic architecture.</div>
+    <p class="section-sub">Explore our preloaded implant STL models. Drag to rotate · Scroll to zoom · Right-drag to pan.</p>
+  </div>
+
+  <div class="products-grid">
+    <!-- Card 1 -->
+    <div class="product-card">
+      <div class="product-card-header">
+        <div class="product-name">Pedicle Screw</div>
+        <div class="product-tag">SPINAL FIXATION</div>
+      </div>
+      <p class="product-desc">Pedicle screw geometry optimized for spinal fixation applications, with a dedicated STL viewer slot for your backend-hosted model.</p>
+      <div class="stl-viewer-wrap" id="wrap-0">
+        <div class="stl-placeholder" id="placeholder-0">
+          <svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.5">
+            <path d="M6 40V18l10-10h20a2 2 0 012 2v30a2 2 0 01-2 2H8a2 2 0 01-2-2z"/>
+            <path d="M16 8v10H6"/>
+            <path d="M24 22v8M20 26h8"/>
+          </svg>
+          <p>Loading model...</p>
+        </div>
+        <canvas id="canvas-0"></canvas>
+      </div>
+      <div class="stl-controls">
+        <button class="reset-btn" onclick="resetCamera(0)">Reset View</button>
+        <div class="stl-info-bar" id="info-0"></div>
+      </div>
+    </div>
+
+    <!-- Card 2 -->
+    <div class="product-card">
+      <div class="product-card-header">
+        <div class="product-name">Bone Plate</div>
+        <div class="product-tag">FRACTURE FIXATION</div>
+      </div>
+      <p class="product-desc">Re-entrant and rotating-square auxetic lattice configurations applied to cortical bone plates, reducing stress shielding at the fracture site and improving load distribution during healing.</p>
+      <div class="stl-viewer-wrap" id="wrap-1">
+        <div class="stl-placeholder" id="placeholder-1">
+          <svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.5">
+            <path d="M6 40V18l10-10h20a2 2 0 012 2v30a2 2 0 01-2 2H8a2 2 0 01-2-2z"/>
+            <path d="M16 8v10H6"/>
+            <path d="M24 22v8M20 26h8"/>
+          </svg>
+          <p>Loading model...</p>
+        </div>
+        <canvas id="canvas-1"></canvas>
+      </div>
+      <div class="stl-controls">
+        <button class="reset-btn" onclick="resetCamera(1)">Reset View</button>
+        <div class="stl-info-bar" id="info-1"></div>
+      </div>
+    </div>
+
+    <!-- Card 3 -->
+    <div class="product-card">
+      <div class="product-card-header">
+        <div class="product-name">Hip Replacement Stem</div>
+        <div class="product-tag">TOTAL JOINT</div>
+      </div>
+      <p class="product-desc">Femoral stem with auxetic lattice architecture targeting the proximal stem region — the site of maximum stress shielding in solid titanium designs — to restore physiological load transfer.</p>
+      <div class="stl-viewer-wrap" id="wrap-2">
+        <div class="stl-placeholder" id="placeholder-2">
+          <svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.5">
+            <path d="M6 40V18l10-10h20a2 2 0 012 2v30a2 2 0 01-2 2H8a2 2 0 01-2-2z"/>
+            <path d="M16 8v10H6"/><path d="M24 22v8M20 26h8"/>
+          </svg>
+          <p>Loading model...</p>
+        </div>
+        <canvas id="canvas-2"></canvas>
+      </div>
+      <div class="stl-controls">
+        <button class="reset-btn" onclick="resetCamera(2)">Reset View</button>
+        <div class="stl-info-bar" id="info-2"></div>
+      </div>
+    </div>
+
+    <!-- Card 4 -->
+    <div class="product-card">
+      <div class="product-card-header">
+        <div class="product-name">Bone Screw</div>
+        <div class="product-tag">FIXATION HARDWARE</div>
+      </div>
+      <p class="product-desc">Auxetic pedicle and cortical screw designs with NPR geometries that resist loosening and improve osseointegration by enabling natural bone apposition under cyclic spinal loading.</p>
+      <div class="stl-viewer-wrap" id="wrap-3">
+        <div class="stl-placeholder" id="placeholder-3">
+          <svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.5">
+            <path d="M6 40V18l10-10h20a2 2 0 012 2v30a2 2 0 01-2 2H8a2 2 0 01-2-2z"/>
+            <path d="M16 8v10H6"/><path d="M24 22v8M20 26h8"/>
+          </svg>
+          <p>Loading model...</p>
+        </div>
+        <canvas id="canvas-3"></canvas>
+      </div>
+      <div class="stl-controls">
+        <button class="reset-btn" onclick="resetCamera(3)">Reset View</button>
+        <div class="stl-info-bar" id="info-3"></div>
+      </div>
+    </div>
+
+    <!-- Card 5 -->
+    <div class="product-card">
+      <div class="product-card-header">
+        <div class="product-name">Orthopedic Rod</div>
+        <div class="product-tag">SPINAL STABILIZATION</div>
+      </div>
+      <p class="product-desc">Spinal stabilization rods with embedded wireless torsional strain sensors and auxetic structural elements that maintain mechanical integrity while transmitting load to adjacent vertebral segments.</p>
+      <div class="stl-viewer-wrap" id="wrap-4">
+        <div class="stl-placeholder" id="placeholder-4">
+          <svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.5">
+            <path d="M6 40V18l10-10h20a2 2 0 012 2v30a2 2 0 01-2 2H8a2 2 0 01-2-2z"/>
+            <path d="M16 8v10H6"/><path d="M24 22v8M20 26h8"/>
+          </svg>
+          <p>Loading model...</p>
+        </div>
+        <canvas id="canvas-4"></canvas>
+      </div>
+      <div class="stl-controls">
+        <button class="reset-btn" onclick="resetCamera(4)">Reset View</button>
+        <div class="stl-info-bar" id="info-4"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ══ TEAM ═══════════════════════════════════════════════════════════════ -->
+<div class="page" id="page-team">
+  <div class="team-hero">
+    <div class="section-tag">The Team</div>
+    <div class="section-title">Built in the lab.<br>Driven by patients.</div>
+    <p class="section-sub">Four Northwestern student researchers with complementary expertise across device design, sensor engineering, biomechanics, and commercialization.</p>
+  </div>
+
+  <div class="team-grid">
+    <div class="team-card">
+      <div class="team-avatar">SK</div>
+      <div class="team-name">Sepehr Khavari</div>
+      <div class="team-role">Team Lead · Device Design</div>
+      <div class="team-degree">BA Neuroscience · June 2027</div>
+      <div class="team-bio">Extensive 3D design experience in SolidWorks, OnShape, and Autodesk Fusion with polymer and metal additive manufacturing. Contributing to six patent-pending medical device designs across four physiological systems.</div>
+    </div>
+    <div class="team-card">
+      <div class="team-avatar" style="color: var(--blue);">DJ</div>
+      <div class="team-name">Dev Jhaveri</div>
+      <div class="team-role">3D Modeling · Sensor Integration</div>
+      <div class="team-degree">BS Mechanical Engineering · June 2028</div>
+      <div class="team-bio">Focuses on sensor integration and orthopedic implant design. Rapid prototyping capabilities and sensor knowledge inform both design and manufacturing elements of the Auxetica platform.</div>
+    </div>
+    <div class="team-card">
+      <div class="team-avatar" style="color: #d4a0ff;">BS</div>
+      <div class="team-name">Batool Salman</div>
+      <div class="team-role">Biomechanics · Device Testing</div>
+      <div class="team-degree">BS Biomedical Engineering · June 2027</div>
+      <div class="team-bio">Biomechanical engineer with extensive benchtop testing experience and a focus on patient-centered device application. Leads validation protocols and mechanical characterization of auxetic prototype configurations.</div>
+    </div>
+    <div class="team-card">
+      <div class="team-avatar" style="color: #ffaa4d;">NP</div>
+      <div class="team-name">Nick Powers</div>
+      <div class="team-role">Commercialization · Market Strategy</div>
+      <div class="team-degree">BS Neuroscience · June 2028</div>
+      <div class="team-bio">Leads commercialization strategy combining biological implant expertise and market analysis. As a recipient of spinal fusion surgery for idiopathic adolescent scoliosis, brings a unique patient perspective to the team's mission.</div>
+    </div>
+  </div>
+
+  <div class="advisor-section">
+    <div class="section-tag" style="margin-bottom: 1.5rem;">Faculty Advisor</div>
+    <div class="advisor-card">
+      <div class="advisor-avatar">CA</div>
+      <div>
+        <div class="advisor-name">Dr. Christopher Ahuja</div>
+        <div class="advisor-title">Assistant Professor, Neurological Surgery · Northwestern University</div>
+        <div class="advisor-bio">Dr. Ahuja leads an extensive program studying novel regenerative therapies for spinal cord injury and has a proven track record of translating medical devices from the lab into clinical application. He oversees the Auxetica project and provides direct mentorship in device fabrication, animal model protocols, and the regulatory pathway for implantable devices.</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ══ CONTACT ════════════════════════════════════════════════════════════ -->
+<div class="page" id="page-contact">
+  <div class="contact-wrap">
+    <div class="contact-inner">
+      <div class="section-tag">Get In Touch</div>
+      <div class="section-title" style="font-size: 2.2rem; margin-bottom: 0.75rem;">Let's talk.</div>
+      <p style="color: var(--muted); line-height: 1.8; margin-bottom: 0.5rem;">For partnership inquiries, investment conversations, or clinical collaboration opportunities, reach us through Northwestern University.</p>
+      <div class="contact-grid">
+        <div class="contact-item">
+          <div class="contact-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+          </div>
+          <div>
+            <div class="contact-label">Team Lead</div>
+            <div class="contact-val">sepehrkhavari@northwestern.edu</div>
+          </div>
+        </div>
+        <div class="contact-item">
+          <div class="contact-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 014 10 15.3 15.3 0 01-4 10 15.3 15.3 0 01-4-10 15.3 15.3 0 014-10z"/></svg>
+          </div>
+          <div>
+            <div class="contact-label">Institution</div>
+            <div class="contact-val">Northwestern University · Ahuja Lab · Evanston, IL</div>
+          </div>
+        </div>
+        <div class="contact-item">
+          <div class="contact-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="7" width="20" height="14" rx="2" ry="2"/><path d="M16 21V5a2 2 0 00-2-2h-4a2 2 0 00-2 2v16"/></svg>
+          </div>
+          <div>
+            <div class="contact-label">IP & Licensing</div>
+            <div class="contact-val">Northwestern Innovation and New Ventures Office (INVO)</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<footer>
+  <div class="footer-logo">AUXE<span>TICA</span></div>
+  <div>Northwestern University · Ahuja Lab · © 2026</div>
+</footer>
+
+<!-- Three.js -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+<script>
+// ── PAGE ROUTING ──────────────────────────────────────────────────────────
+function showPage(id) {
+  document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+  document.querySelectorAll('.nav-links a').forEach(a => a.classList.remove('active'));
+  document.getElementById('page-' + id).classList.add('active');
+  document.getElementById('nav-' + id).classList.add('active');
+  window.scrollTo(0, 0);
+  if (id === 'science') animateBars();
+  if (id === 'products') {
+    setTimeout(() => { viewers.forEach(v => { if (v) { resizeViewer(v); v.renderer.render(v.scene, v.camera); } }); }, 100);
+  }
+  return false;
+}
+
+// ── SCIENCE BAR ANIMATION ────────────────────────────────────────────────
+function animateBars() {
+  const solid = document.getElementById('bar-solid');
+  const aux = document.getElementById('bar-auxetic');
+  if (!solid || !aux) return;
+  solid.style.transition = 'none'; solid.style.height = '0px';
+  aux.style.transition = 'none'; aux.style.height = '0px';
+  setTimeout(() => {
+    solid.style.transition = 'height 0.9s cubic-bezier(0.4,0,0.2,1)';
+    aux.style.transition = 'height 0.9s cubic-bezier(0.4,0,0.2,1) 0.2s';
+    solid.style.height = '90px';
+    aux.style.height = '29px';
+  }, 100);
+}
+
+// ── STL VIEWERS ──────────────────────────────────────────────────────────
+const STL_MODEL_PATHS = [
+  '/stls/pedicle-screw.stl',
+  '/stls/bone-plate.stl',
+  '/stls/hip-replacement-stem.stl',
+  '/stls/bone-screw.stl',
+  '/stls/orthopedic-rod.stl'
+];
+const viewers = Array(STL_MODEL_PATHS.length).fill(null);
+
+function initViewer(index) {
+  const canvas = document.getElementById('canvas-' + index);
+  const wrap = document.getElementById('wrap-' + index);
+  const w = wrap.clientWidth;
+  const h = wrap.clientHeight;
+
+  const renderer = new THREE.WebGLRenderer({ canvas, antialias: true, alpha: true });
+  renderer.setSize(w, h);
+  renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+  renderer.setClearColor(0xf3f7fc, 1);
+
+  const scene = new THREE.Scene();
+
+  // Lighting
+  const ambient = new THREE.AmbientLight(0xffffff, 0.4);
+  scene.add(ambient);
+  const dir1 = new THREE.DirectionalLight(0xffffff, 0.8);
+  dir1.position.set(1, 2, 3);
+  scene.add(dir1);
+  const dir2 = new THREE.DirectionalLight(0x0066cc, 0.3);
+  dir2.position.set(-2, -1, -2);
+  scene.add(dir2);
+  const dir3 = new THREE.DirectionalLight(0x3d7eff, 0.2);
+  dir3.position.set(0, -3, 1);
+  scene.add(dir3);
+
+  // Grid
+  const grid = new THREE.GridHelper(4, 20, 0xc2d3e8, 0xdce8f5);
+  grid.position.y = -1;
+  scene.add(grid);
+
+  const camera = new THREE.PerspectiveCamera(45, w / h, 0.01, 1000);
+  camera.position.set(0, 0, 4);
+  camera.lookAt(0, 0, 0);
+
+  const state = {
+    renderer, scene, camera, canvas, wrap,
+    mesh: null,
+    isDragging: false, isRightDrag: false,
+    lastX: 0, lastY: 0,
+    spherical: { theta: 0, phi: Math.PI / 2, radius: 4 },
+    target: new THREE.Vector3(0, 0, 0),
+    animFrameId: null
+  };
+
+  viewers[index] = state;
+
+  // Mouse controls
+  canvas.addEventListener('mousedown', e => {
+    state.isDragging = true;
+    state.isRightDrag = e.button === 2;
+    state.lastX = e.clientX;
+    state.lastY = e.clientY;
+    e.preventDefault();
+  });
+  canvas.addEventListener('contextmenu', e => e.preventDefault());
+
+  window.addEventListener('mousemove', e => {
+    if (!state.isDragging) return;
+    const dx = e.clientX - state.lastX;
+    const dy = e.clientY - state.lastY;
+    state.lastX = e.clientX; state.lastY = e.clientY;
+    if (state.isRightDrag) {
+      // Pan
+      const panSpeed = 0.005 * state.spherical.radius;
+      const right = new THREE.Vector3();
+      const up = new THREE.Vector3();
+      camera.getWorldDirection(new THREE.Vector3());
+      right.crossVectors(camera.getWorldDirection(new THREE.Vector3()), camera.up).normalize();
+      up.copy(camera.up).normalize();
+      state.target.addScaledVector(right, -dx * panSpeed);
+      state.target.addScaledVector(up, dy * panSpeed);
+    } else {
+      // Orbit
+      state.spherical.theta -= dx * 0.008;
+      state.spherical.phi = Math.max(0.1, Math.min(Math.PI - 0.1, state.spherical.phi - dy * 0.008));
+    }
+    updateCamera(state);
+    state.renderer.render(state.scene, state.camera);
+  });
+
+  window.addEventListener('mouseup', () => { state.isDragging = false; });
+
+  canvas.addEventListener('wheel', e => {
+    e.preventDefault();
+    state.spherical.radius = Math.max(0.5, Math.min(20, state.spherical.radius + e.deltaY * 0.01));
+    updateCamera(state);
+    state.renderer.render(state.scene, state.camera);
+  }, { passive: false });
+
+  // Touch controls
+  let lastTouchDist = 0;
+  let lastTouchX = 0, lastTouchY = 0;
+  canvas.addEventListener('touchstart', e => {
+    e.preventDefault();
+    if (e.touches.length === 1) {
+      state.isDragging = true;
+      lastTouchX = e.touches[0].clientX;
+      lastTouchY = e.touches[0].clientY;
+    } else if (e.touches.length === 2) {
+      state.isDragging = false;
+      const dx = e.touches[0].clientX - e.touches[1].clientX;
+      const dy = e.touches[0].clientY - e.touches[1].clientY;
+      lastTouchDist = Math.sqrt(dx*dx + dy*dy);
+    }
+  }, { passive: false });
+
+  canvas.addEventListener('touchmove', e => {
+    e.preventDefault();
+    if (e.touches.length === 1 && state.isDragging) {
+      const dx = e.touches[0].clientX - lastTouchX;
+      const dy = e.touches[0].clientY - lastTouchY;
+      lastTouchX = e.touches[0].clientX;
+      lastTouchY = e.touches[0].clientY;
+      state.spherical.theta -= dx * 0.008;
+      state.spherical.phi = Math.max(0.1, Math.min(Math.PI - 0.1, state.spherical.phi - dy * 0.008));
+      updateCamera(state);
+      state.renderer.render(state.scene, state.camera);
+    } else if (e.touches.length === 2) {
+      const dx = e.touches[0].clientX - e.touches[1].clientX;
+      const dy = e.touches[0].clientY - e.touches[1].clientY;
+      const dist = Math.sqrt(dx*dx + dy*dy);
+      state.spherical.radius = Math.max(0.5, Math.min(20, state.spherical.radius * (lastTouchDist / dist)));
+      lastTouchDist = dist;
+      updateCamera(state);
+      state.renderer.render(state.scene, state.camera);
+    }
+  }, { passive: false });
+
+  canvas.addEventListener('touchend', () => { state.isDragging = false; });
+
+  renderLoop(state);
+  return state;
+}
+
+function updateCamera(state) {
+  const { theta, phi, radius } = state.spherical;
+  state.camera.position.x = state.target.x + radius * Math.sin(phi) * Math.sin(theta);
+  state.camera.position.y = state.target.y + radius * Math.cos(phi);
+  state.camera.position.z = state.target.z + radius * Math.sin(phi) * Math.cos(theta);
+  state.camera.lookAt(state.target);
+}
+
+function renderLoop(state) {
+  state.animFrameId = requestAnimationFrame(() => renderLoop(state));
+  state.renderer.render(state.scene, state.camera);
+}
+
+function resizeViewer(state) {
+  const w = state.wrap.clientWidth;
+  const h = state.wrap.clientHeight;
+  state.renderer.setSize(w, h);
+  state.camera.aspect = w / h;
+  state.camera.updateProjectionMatrix();
+}
+
+// ── STL PARSER ────────────────────────────────────────────────────────────
+function parseSTL(buffer) {
+  // Try ASCII
+  const text = new TextDecoder().decode(new Uint8Array(buffer, 0, Math.min(256, buffer.byteLength)));
+  if (text.trimStart().startsWith('solid')) {
+    return parseASCII(new TextDecoder().decode(buffer));
+  }
+  return parseBinary(buffer);
+}
+
+function parseASCII(text) {
+  const positions = [];
+  const normals = [];
+  const normalRe = /facet\s+normal\s+([\d.eE+\-]+)\s+([\d.eE+\-]+)\s+([\d.eE+\-]+)/g;
+  const vertexRe = /vertex\s+([\d.eE+\-]+)\s+([\d.eE+\-]+)\s+([\d.eE+\-]+)/g;
+  let nm, vm;
+  const allNormals = [];
+  while ((nm = normalRe.exec(text)) !== null) allNormals.push([+nm[1], +nm[2], +nm[3]]);
+  let vi = 0;
+  while ((vm = vertexRe.exec(text)) !== null) {
+    positions.push(+vm[1], +vm[2], +vm[3]);
+    const n = allNormals[Math.floor(vi / 3)] || [0, 0, 1];
+    normals.push(n[0], n[1], n[2]);
+    vi++;
+  }
+  return { positions: new Float32Array(positions), normals: new Float32Array(normals) };
+}
+
+function parseBinary(buffer) {
+  const view = new DataView(buffer);
+  const numTriangles = view.getUint32(80, true);
+  const positions = new Float32Array(numTriangles * 9);
+  const normals = new Float32Array(numTriangles * 9);
+  let offset = 84;
+  for (let i = 0; i < numTriangles; i++) {
+    const nx = view.getFloat32(offset, true); offset += 4;
+    const ny = view.getFloat32(offset, true); offset += 4;
+    const nz = view.getFloat32(offset, true); offset += 4;
+    for (let v = 0; v < 3; v++) {
+      const base = i * 9 + v * 3;
+      positions[base]   = view.getFloat32(offset, true); offset += 4;
+      positions[base+1] = view.getFloat32(offset, true); offset += 4;
+      positions[base+2] = view.getFloat32(offset, true); offset += 4;
+      normals[base] = nx; normals[base+1] = ny; normals[base+2] = nz;
+    }
+    offset += 2; // attribute byte count
+  }
+  return { positions, normals };
+}
+
+function applySTLToViewer(index, positions, normals, sourceLabel) {
+  if (!viewers[index]) initViewer(index);
+  const state = viewers[index];
+
+  // Remove old mesh
+  if (state.mesh) {
+    state.scene.remove(state.mesh);
+    state.mesh.geometry.dispose();
+  }
+
+  const geo = new THREE.BufferGeometry();
+  geo.setAttribute('position', new THREE.BufferAttribute(positions, 3));
+  geo.setAttribute('normal', new THREE.BufferAttribute(normals, 3));
+  geo.computeBoundingBox();
+
+  // Center
+  const box = geo.boundingBox;
+  const center = new THREE.Vector3();
+  box.getCenter(center);
+  geo.translate(-center.x, -center.y, -center.z);
+
+  // Scale to fit
+  const size = new THREE.Vector3();
+  box.getSize(size);
+  const maxDim = Math.max(size.x, size.y, size.z);
+  const scale = maxDim > 0 ? 2.5 / maxDim : 1;
+  geo.scale(scale, scale, scale);
+
+  const mat = new THREE.MeshPhongMaterial({
+    color: 0xb0bfd4,
+      specular: 0x0066cc,
+    shininess: 80,
+    side: THREE.DoubleSide,
+  });
+
+  const mesh = new THREE.Mesh(geo, mat);
+  state.scene.add(mesh);
+  state.mesh = mesh;
+
+  // Reset camera
+  state.spherical = { theta: 0.5, phi: 1.2, radius: 4 };
+  state.target.set(0, 0, 0);
+  updateCamera(state);
+
+  // Show canvas, hide placeholder
+  const placeholder = document.getElementById('placeholder-' + index);
+  if (placeholder) placeholder.style.display = 'none';
+  const canvas = document.getElementById('canvas-' + index);
+  canvas.style.display = 'block';
+
+  // Info
+  const numTri = positions.length / 9;
+  const info = document.getElementById('info-' + index);
+  info.textContent = `${sourceLabel} · ${numTri.toLocaleString()} triangles`;
+  info.classList.add('visible');
+
+  resizeViewer(state);
+  state.renderer.render(state.scene, state.camera);
+}
+
+async function loadSTLFromUrl(index, stlUrl) {
+  try {
+    const response = await fetch(stlUrl);
+    if (!response.ok) throw new Error(`HTTP ${response.status}`);
+    const buffer = await response.arrayBuffer();
+    const { positions, normals } = parseSTL(buffer);
+    const sourceLabel = stlUrl.split('/').pop() || 'model.stl';
+    applySTLToViewer(index, positions, normals, sourceLabel);
+  } catch (error) {
+    const placeholder = document.getElementById('placeholder-' + index);
+    if (placeholder) placeholder.querySelector('p').textContent = 'Model unavailable';
+    const info = document.getElementById('info-' + index);
+    info.textContent = `Failed to load ${stlUrl}`;
+    info.classList.add('visible');
+    console.error(`Failed to load STL for viewer ${index}:`, error);
+  }
+}
+
+function resetCamera(index) {
+  if (!viewers[index]) return;
+  const state = viewers[index];
+  state.spherical = { theta: 0.5, phi: 1.2, radius: 4 };
+  state.target.set(0, 0, 0);
+  updateCamera(state);
+  state.renderer.render(state.scene, state.camera);
+}
+
+// ── INIT ──────────────────────────────────────────────────────────────────
+// Initialize canvases (hidden until STL loaded)
+document.querySelectorAll('.stl-viewer-wrap canvas').forEach(c => { c.style.display = 'none'; });
+STL_MODEL_PATHS.forEach((path, index) => {
+  loadSTLFromUrl(index, path);
+});
+
+window.addEventListener('resize', () => {
+  viewers.forEach(v => { if (v) { resizeViewer(v); v.renderer.render(v.scene, v.camera); } });
+});
+
+</script>
+</body>
+</html>
