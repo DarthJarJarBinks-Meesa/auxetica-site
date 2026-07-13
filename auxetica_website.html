@@ -362,6 +362,45 @@ nav {
 .advisor-title { font-size: 0.85rem; color: var(--teal); margin-bottom: 0.75rem; }
 .advisor-bio { font-size: 0.9rem; color: var(--muted); line-height: 1.75; }
 
+/* ── FOR INVESTORS ── */
+.investors-hero {
+  padding: 5rem 4rem 3rem;
+  border-bottom: 1px solid var(--border); background: var(--bg2);
+}
+.funding-card {
+  background: var(--bg2);
+  border: 1px solid var(--border);
+  border-left: 4px solid var(--teal);
+  padding: 2.5rem 2.75rem;
+  max-width: 780px;
+}
+.funding-badge {
+  display: inline-block;
+  font-family: var(--font-mono); font-size: 0.72rem;
+  letter-spacing: 0.12em; color: var(--teal);
+  border: 1px solid rgba(0,102,204,0.32);
+  padding: 5px 12px; border-radius: 2px; margin-bottom: 1.5rem;
+}
+.funding-card h3 {
+  font-family: var(--font-display); font-weight: 700; font-size: 1.5rem;
+  margin-bottom: 1rem;
+}
+.funding-card p {
+  font-size: 0.95rem; color: var(--muted); line-height: 1.85;
+  margin-bottom: 2rem;
+}
+.investor-contact-strip {
+  margin: 0 4rem 6rem;
+  padding: 2rem 2.5rem;
+  background: var(--teal-dim2);
+  border: 1px solid rgba(0,102,204,0.26);
+  border-left: 3px solid var(--teal);
+  border-radius: 0 3px 3px 0;
+}
+.investor-contact-strip p { font-size: 1rem; color: var(--text); }
+.investor-contact-strip a { color: var(--teal); font-weight: 500; text-decoration: none; }
+.investor-contact-strip a:hover { text-decoration: underline; }
+
 /* ── CONTACT ── */
 .contact-wrap {
   min-height: calc(100vh - 72px); display: flex;
@@ -402,6 +441,7 @@ footer {
     <li><a href="#" onclick="return showPage('science')" id="nav-science">Science</a></li>
     <li><a href="#" onclick="return showPage('products')" id="nav-products">Products</a></li>
     <li><a href="#" onclick="return showPage('team')" id="nav-team">Team</a></li>
+    <li><a href="#" onclick="return showPage('investors')" id="nav-investors">For Investors</a></li>
     <li><a href="#" onclick="return showPage('contact')" id="nav-contact">Contact</a></li>
   </ul>
 </nav>
@@ -809,6 +849,28 @@ footer {
   </div>
 </div>
 
+<!-- ══ FOR INVESTORS ══════════════════════════════════════════════════════ -->
+<div class="page" id="page-investors">
+  <div class="investors-hero">
+    <div class="section-tag">For Investors</div>
+    <div class="section-title">Backed early.<br>Building for the long term.</div>
+    <p class="section-sub">Auxetica is an early-stage venture advancing next-generation orthopedic implants out of Northwestern University's Ahuja Lab.</p>
+  </div>
+
+  <div class="section">
+    <div class="funding-card">
+      <div class="funding-badge">NONDILUTIVE FUNDING · SECURED</div>
+      <h3>VentureWell E-Team Program</h3>
+      <p>Auxetica has acquired nondilutive funding from VentureWell as part of the Summer 2026 E-Team Program cohort — a competitive national program supporting student-led science- and technology-based ventures with grant funding and intensive entrepreneurship training.</p>
+      <a class="btn btn-outline btn-arrow" href="https://venturewell.org/summer-2026-e-teams/?utm_source=social&utm_medium=LinkedIn&utm_campaign=+P_2026+Summer+E-Teams+Outreach+-+Confirmed+Registrants" target="_blank" rel="noopener">View the VentureWell announcement</a>
+    </div>
+  </div>
+
+  <div class="investor-contact-strip">
+    <p>For investment interest, contact <a href="mailto:sepehr.khavari@northwestern.edu">sepehr.khavari@northwestern.edu</a></p>
+  </div>
+</div>
+
 <!-- ══ CONTACT ════════════════════════════════════════════════════════════ -->
 <div class="page" id="page-contact">
   <div class="contact-wrap">
@@ -858,7 +920,7 @@ footer {
 <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
 <script>
 // ── PAGE ROUTING ──────────────────────────────────────────────────────────
-const VALID_PAGES = new Set(['home', 'science', 'products', 'team', 'contact']);
+const VALID_PAGES = new Set(['home', 'science', 'products', 'team', 'investors', 'contact']);
 
 function showPage(id, updateHash = true) {
   if (!VALID_PAGES.has(id)) return false;
